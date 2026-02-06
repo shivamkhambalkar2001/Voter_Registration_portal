@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        <h2>Search Results</h2>
+    </div>
+    <div class="card-body">
+        {% if voter %}
+            <p><strong>Voter ID:</strong> {{ voter.voter_id }}</p>
+            <p><strong>First Name:</strong> {{ voter.first_name }}</p>
+            <p><strong>Last Name:</strong> {{ voter.last_name }}</p>
+            <p><strong>Gender:</strong> {{ voter.get_gender_display }}</p>
+            <p><strong>Address:</strong> {{ voter.address }}</p>
+            <p><strong>City:</strong> {{ voter.city }}</p>
+            <p><strong>State:</strong> {{ voter.state }}</p>
+            <p><strong>Pincode:</strong> {{ voter.pincode }}</p>
+            <p><strong>Date of Birth:</strong> {{ voter.date_of_birth }}</p>
+            <p><strong>Contact:</strong> {{ voter.contact }}</p>
+            <a href="{% url 'voter_update' voter.pk %}" class="btn btn-warning">Update</a>
+            <a href="{% url 'voter_delete' voter.pk %}" class="btn btn-danger">Delete</a>
+        {% else %}
+            <p>No voter found with ID "{{ query }}".</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
